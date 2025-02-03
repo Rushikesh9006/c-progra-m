@@ -1,0 +1,140 @@
+Fibonacci series 
+
+#include <stdio.h>
+
+// Function to generate Fibonacci series up to n terms
+void fibonacci(int n) {
+    int a = 0, b = 1, next;
+
+    // Print the first two terms
+    printf("%d %d ", a, b);
+
+    // Generate the rest of the Fibonacci sequence
+    for (int i = 2; i < n; i++) {
+        next = a + b;
+        printf("%d ", next);
+        a = b;
+        b = next;
+    }
+
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    // Ask user for number of terms
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
+
+    // Generate the Fibonacci series
+
+    fibonacci(n);
+
+    return 0;
+}
+
+
+
+Recursive Fibonacci Series in C
+
+
+#include <stdio.h>
+
+// Recursive function to calculate the nth Fibonacci number
+int fibonacci_recursive(int n) {
+    if (n <= 1)
+        return n;
+    else
+        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
+}
+
+int main() {
+    int n;
+
+    // Ask user for number of terms
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
+
+    // Print the Fibonacci series using recursion
+    printf("Fibonacci series up to %d terms: ", n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", fibonacci_recursive(i));
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+multiplication 
+
+
+
+
+#include <stdio.h>
+
+#define MAX 10
+
+// Function to multiply two matrices A and B, and store the result in matrix C
+void multiply_matrices(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int rowA, int colA, int rowB, int colB) {
+    // Check if multiplication is possible (columns of A must be equal to rows of B)
+    if (colA != rowB) {
+        printf("Matrix multiplication is not possible.\n");
+        return;
+    }
+
+    // Perform matrix multiplication
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colB; j++) {
+            C[i][j] = 0;  // Initialize the element to 0 before adding
+            for (int k = 0; k < colA; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+// Function to print a matrix
+void print_matrix(int matrix[MAX][MAX], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[MAX][MAX], B[MAX][MAX], C[MAX][MAX];
+    int rowA, colA, rowB, colB;
+
+    // Input for matrix A
+    printf("Enter number of rows and columns for matrix A: ");
+    scanf("%d %d", &rowA, &colA);
+    printf("Enter elements of matrix A:\n");
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colA; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Input for matrix B
+    printf("Enter number of rows and columns for matrix B: ");
+    scanf("%d %d", &rowB, &colB);
+    printf("Enter elements of matrix B:\n");
+    for (int i = 0; i < rowB; i++) {
+        for (int j = 0; j < colB; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    // Perform matrix multiplication
+    multiply_matrices(A, B, C, rowA, colA, rowB, colB);
+
+    // Output the result matrix C
+    printf("Resultant Matrix C (A * B):\n");
+    print_matrix(C, rowA, colB);
+
+    return 0;
+}
